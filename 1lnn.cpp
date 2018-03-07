@@ -1,4 +1,4 @@
-#include <iostream>
+     #include <iostream>
 #include <fstream>
 #include <string>
 #include <stdio.h>
@@ -128,8 +128,8 @@ void cal_cell_output(Cell &neuron)
 
 void test_Neurons(Cell  &neuron)
 {
-		cout << neuron.indicator_0 <<" | "<<neuron.weight_0<< " | " << neuron.indicator_1 << " | " <<neuron.weight_1<< " | " << neuron.indicator_2 <<" | "<<neuron.weight_2<< " | " <<
-						neuron.indicator_3 <<" | "<<neuron.weight_3<< " | " << neuron.indicator_4 << " | " << neuron.weight_4<<" | " << neuron.prices      <<" | " <<neuron.output<< endl;
+	cout << neuron.indicator_0 <<" | "<<neuron.weight_0<< " | " << neuron.indicator_1 << " | " <<neuron.weight_1<< " | " << neuron.indicator_2 <<" | "<<neuron.weight_2<< " | " <<
+		neuron.indicator_3 <<" | "<<neuron.weight_3<< " | " << neuron.indicator_4 << " | " << neuron.weight_4<<" | " << neuron.prices      <<" | " <<neuron.output<< endl;
 }
 
 void set_target_size(std::vector<float> &target_prices, int size)
@@ -172,7 +172,13 @@ void trainCells(Cell &neuron, std::vector<float> target_prices,
 	int i =0;
 	ofstream results_stream(results);
 	set_Neurons(neuron, indicator_file);
-	cout << neuron.weight_prices << " " << neuron.weight_0 << " " << neuron.weight_1 << " " << neuron.weight_2 << " " << neuron.weight_3 << " "<< neuron.weight_4 << " "<< neuron.output << endl;
+	cout << neuron.weight_prices << " " << 
+			neuron.weight_0 << " " << 
+			neuron.weight_1 << " " << 
+			neuron.weight_2 << " " << 
+			neuron.weight_3 << " " << 
+			neuron.weight_4 << " " << 
+			neuron.output   << endl;
 	for (auto target : target_prices)
 	{
 		cal_cell_output(neuron);
@@ -188,5 +194,5 @@ void trainCells(Cell &neuron, std::vector<float> target_prices,
 void testCells(Cell &neurons)
 {
 	cout << neurons.weight_prices << "  " << neurons.weight_0 << "  "<< neurons.weight_1 << "  " << neurons.weight_2 << "  " << neurons.weight_3 << "  "<< neurons.weight_4 << "  "
-				<< neurons.output<<endl;
+		 << neurons.output<<endl;
 }

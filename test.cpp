@@ -30,13 +30,14 @@ int main()
 	std::vector<float> target_prices;
 	std::string target = "symb_test3";
 	string indicator_file("indicators_prices");
-	string symbols = {"AAPL", "AMZN", "BRK-A", "FB", "GBTC", "GOOG", "HD", "JNJ", "MSFT", "V"};
-	string symbols_indicators = {"AAPL_IND", "AMZN_IND", "BRK-A_IND", "FB_IND", "GBTC_IND", "HD_IND", "JNJ_IND", "MSFT_IND", "V_IND"};
-	string results = {"AAPL.rst", "AMZN.rst", "BRK.rst", "FB.rst", "GBTC.rst", "HD.rst", "JNJ.rst", "MSFT.rst", "V.rst"};
+	string symbols[] = {"AAPL", "AMZN", "BRK-A", "FB", "GOOG", "HD", "JNJ", "MSFT", "V"};
+	string symbols_indicators[] = {"AAPL.ind", "AMZN.ind", "BRK-A.ind", "FB.ind", "HD.ind", "JNJ.ind", "MSFT.ind", "V.ind"};
+	string results[] = {"AAPL.rst", "AMZN.rst", "BRK.rst", "FB.rst", "HD.rst", "JNJ.rst", "MSFT.rst", "V.rst"};
 
 
-	for(auto i=0; i < symbols.size(); i++ )
+	for(auto i=0; i < 10; i++ )
 	{
+		target_prices.resize(0);
 		set_target(target_prices, symbols[i]);
 		trainCells(testNeurons, target_prices, symbols_indicators[i], results[i]);
 
@@ -62,7 +63,7 @@ int main()
 	set_target(target_prices, target);
 	std::cout << "Before Training" << std::endl;
 	//set_Neurons(testNeurons, indicator_file);
-	trainCells(testNeurons, target_prices,indicator_file, test_indicators, results);
+	//trainCells(testNeurons, target_prices,indicator_file, test_indicators, results);
 
 	//test_Neurons(testNeurons);
 	std::cout << " After Training Cells" <<std::endl;
