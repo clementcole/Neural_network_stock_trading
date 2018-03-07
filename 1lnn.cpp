@@ -7,6 +7,8 @@
 #include <map>
 #include <random>
 #include <algorithm>
+#include <utility>
+#include <iterator>
 
 
 using namespace std;
@@ -163,9 +165,12 @@ void set_target(std::vector<float> &target_prices, string target_file)
 
 }
 
-void trainCells(Cell &neuron, std::vector<float> target_prices, string &indicator_file, std::vector<std::string> &test_result_files)
+void trainCells(Cell &neuron, std::vector<float> target_prices, 
+				string &indicator_file, 
+				string &results)
 {
 	int i =0;
+	ofstream results_stream(results);
 	set_Neurons(neuron, indicator_file);
 	cout << neuron.weight_prices << " " << neuron.weight_0 << " " << neuron.weight_1 << " " << neuron.weight_2 << " " << neuron.weight_3 << " "<< neuron.weight_4 << " "<< neuron.output << endl;
 	for (auto target : target_prices)
@@ -173,7 +178,7 @@ void trainCells(Cell &neuron, std::vector<float> target_prices, string &indicato
 		cal_cell_output(neuron);
 		auto error = get_error(neuron, target);
 		updateCellWeights(neuron, error);
-		cout << neuron.weight_prices << "  " << neuron.weight_0 << "  "<< neuron.weight_1 << "  " << neuron.weight_2 << "  " << neuron.weight_3 << "  "<< neuron.weight_4 << "  "<< neuron.output<<endl;
+		results_stream << neuron.weight_prices << "  " << neuron.weight_0 << "  "<< neuron.weight_1 << "  " << neuron.weight_2 << "  " << neuron.weight_3 << "  "<< neuron.weight_4 << "  "<< neuron.output<<endl;
 		i++;
 	}
 	test_Neurons(neuron);
